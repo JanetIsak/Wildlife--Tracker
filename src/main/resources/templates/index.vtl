@@ -1,0 +1,85 @@
+<div class="panel-group">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        <a>Add a Sighting</a>
+      </h2>
+    </div>
+    <div class="panel-body">
+      <div class="form">
+        <form action="/sighting/new" method="post">
+          <div class="form-group">
+            <label for="ranger_name">Ranger Name:</label>
+            <input id="ranger_name" name="ranger_name" type="text" class="form-control" required>
+            <div class="form-group">
+              <label for="location">Location:</label>
+              <select id="location" name="location" type="text">
+                <option value="Zone A">Zone A</option>
+                <option value="Zone B">Zone B</option>
+                <option value="Zone C">Zone C</option>
+                <option value="Zone D">Zone D</option>
+                <option value="Zone E">Zone E</option>
+              </select>
+            </div>
+            <label for="name">Animal Name:</label>
+            <input id="name" name="name" type="text" class="form-control">
+            <label for="endangered">Endangered: (Please enter, yes or no)</label>
+            <input id="endangered" name="endangered" type="text" class="form-control" required>
+            <label for="health">Animal Health: (Please enter, ill or okay or healthy)</label>
+            <input id="health" name="health" type="text" class="form-control">
+            <label for="age">Animal Age: (Please enter, newborn or young or adult)</label>
+            <input id="age" name="age" type="text" class="form-control">
+          </div>
+          <button class="btn btn-info" type="submit">Add New Sighting</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h2 class="panel-title">Sightings</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <th class="col-xs-1">Ranger Name:</th>
+        <th class="col-xs-1">Location:</th>
+        <th class="col-xs-1">Animal:</th>
+        <th class="col-xs-1">Endangered?</th>
+        <th class="col-xs-1">Health:</th>
+        <th class="col-xs-1">Age:</th>
+        <th class="col-xs-1">Timestamp:</th>
+      </thead>
+      <tbody>
+        #foreach ($sighting in $sightings)
+        <tr>
+          <td>$sighting.getRangerName()</td>
+          <td>$sighting.getLocation()</td>
+
+          #if ($AnimalClass.getAnimalName($sighting.getAnimalId()))
+          <td>$AnimalClass.getAnimalName($sighting.getAnimalId())</td>
+          #else
+          <td></td>
+          #end #if ($AnimalClass.getAnimalEndangered($sighting.getAnimalId()))
+          <td>$AnimalClass.getAnimalEndangered($sighting.getAnimalId())</td>
+          #else
+          <td></td>
+          #end #if ($AnimalClass.getAnimalHealth($sighting.getAnimalId()))
+          <td>$AnimalClass.getAnimalHealth($sighting.getAnimalId())</td>
+          #else
+          <td></td>
+          #end #if ($AnimalClass.getAnimalAge($sighting.getAnimalId()))
+          <td>$AnimalClass.getAnimalAge($sighting.getAnimalId())</td>
+          #else
+          <td></td>
+          #end
+
+          <td>$sighting.getTimestamp()</td>
+        </tr>
+        #end
+      </tbody>
+    </table>
+  </div>
+</div>
