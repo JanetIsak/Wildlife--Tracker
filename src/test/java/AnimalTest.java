@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class AnimalTest {
 
-  Animal animal1 = new Animal("Owl", "No");
-  Animal animal2 = new Animal("Dog", "No");
+  Animal animal1 = new Animal("Lion", "No");
+  Animal animal2 = new Animal("Tiger", "No");
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
@@ -20,9 +20,9 @@ public class AnimalTest {
   }
 
   @Test
-  public void getName_personInstantiatesWithName_Owl() {
+  public void getName_personInstantiatesWithName_Lion() {
     Animal testAnimal = animal1;
-    assertEquals("Owl", testAnimal.getName());
+    assertEquals("Lion", testAnimal.getName());
   }
 
   @Test
